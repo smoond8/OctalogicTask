@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+     "seed": "node seed.js",
     "start": "cp .env.local .env && nodemon app.js -e js"
   },
   "author": "sunil",
