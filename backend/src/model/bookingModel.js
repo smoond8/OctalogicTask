@@ -10,6 +10,12 @@ const Booking = sequelize.define('Booking', {
     type: DataTypes.DATE,
     allowNull: false,
   },
+  firstName:{
+    type:DataTypes.STRING
+  },
+  lastName:{
+    type:DataTypes.STRING
+  }
 });
 
 module.exports = Booking;

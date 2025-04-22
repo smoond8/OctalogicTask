@@ -12,7 +12,7 @@ module.exports = (schema) => (req, res, next) => {
     }
 
     const ragVal = schema.validate(validationData);
-    console.log(ragVal, "Validation Result");
+    // console.log(ragVal, "Validation Result");
 
     if (ragVal.error) {
         const message = ragVal.error.message;
