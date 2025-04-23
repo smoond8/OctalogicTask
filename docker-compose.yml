@@ -1,29 +1,28 @@
-version: '3'
+version: '3.8'
+
 services:
   backend:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - "5001:5001"
+      - "5002:5001"
     environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: 123
-      DB_NAME: carrental
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=carrental
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
     depends_on:
       - db
+    command: ["./wait-for-db.sh", "npm", "start"]
 
   db:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: carrental
+    image: postgres:15
+    restart: always
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
-    driver: local
+    environment:
+      POSTGRES_DB: carrental
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
